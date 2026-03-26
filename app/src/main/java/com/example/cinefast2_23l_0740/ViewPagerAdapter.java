@@ -1,0 +1,21 @@
+public class ViewPagerAdapter extends FragmentStateAdapter {
+
+    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
+    }
+
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        if (position == 0) {
+            return new NowShowingFragment();
+        } else {
+            return new ComingSoonFragment();
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return 2;
+    }
+}
