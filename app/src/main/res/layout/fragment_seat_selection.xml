@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0E0E0E">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Movie Name -->
+        <TextView
+            android:id="@+id/movieTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Movie Name"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Seat Grid -->
+        <GridLayout
+            android:id="@+id/seatGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:rowCount="3"
+            android:layout_marginBottom="20dp">
+
+            <!-- 12 seats -->
+            <Button android:id="@+id/seat1" style="@style/SeatStyle" android:text="A1"/>
+            <Button android:id="@+id/seat2" style="@style/SeatStyle" android:text="A2"/>
+            <Button android:id="@+id/seat3" style="@style/SeatStyle" android:text="A3"/>
+            <Button android:id="@+id/seat4" style="@style/SeatStyle" android:text="A4"/>
+
+            <Button android:id="@+id/seat5" style="@style/SeatStyle" android:text="B1"/>
+            <Button android:id="@+id/seat6" style="@style/SeatStyle" android:text="B2"/>
+            <Button android:id="@+id/seat7" style="@style/SeatStyle" android:text="B3"/>
+            <Button android:id="@+id/seat8" style="@style/SeatStyle" android:text="B4"/>
+
+            <Button android:id="@+id/seat9" style="@style/SeatStyle" android:text="C1"/>
+            <Button android:id="@+id/seat10" style="@style/SeatStyle" android:text="C2"/>
+            <Button android:id="@+id/seat11" style="@style/SeatStyle" android:text="C3"/>
+            <Button android:id="@+id/seat12" style="@style/SeatStyle" android:text="C4"/>
+
+        </GridLayout>
+
+        <!-- Selected Count -->
+        <TextView
+            android:id="@+id/seatCountText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selected Seats: 0"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/totalPriceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Price: Rs 0"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_marginBottom="20dp"/>
+
+        <Button
+            android:id="@+id/proceedBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Proceed to Snacks"
+            android:enabled="false"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/bookNowBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Book Seats Now"/>
+
+    </LinearLayout>
+
+</ScrollView>

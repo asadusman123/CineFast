@@ -43,12 +43,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         holder.image.setImageResource(movie.getImage());
 
         holder.bookBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(context, MainActivity.class);
 
-            // We'll improve this later using fragments properly
-            intent.putExtra("movie_name", movie.getName());
+            Bundle bundle = new Bundle();
+            bundle.putString("movie_name", movie.getName());
 
-            context.startActivity(intent);
+            // IMPORTANT: also pass type
+            bundle.putString("type", context instanceof Activity &&
+                    ((Activity) context).getTitle().toString().contains("Coming") ? "coming" : "now");
+
+            SeatSelectionFragment fragment = new SeatSelectionFragment();
+            fragment.setArguments(bundle);
+
+            ((MainActivity) context).loadFragment(fragment);
         });
 
         holder.trailerBtn.setOnClickListener(v -> {
