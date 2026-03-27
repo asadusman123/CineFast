@@ -41,4 +41,48 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_home, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.viewBooking) {
+            showLastBooking();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    private void showLastBooking() {
+
+        SharedPreferences prefs = requireActivity().getSharedPreferences("booking", Context.MODE_PRIVATE);
+
+        String movie = prefs.getString("movie", null);
+        int seats = prefs.getInt("seats", 0);
+        int total = prefs.getInt("total", 0);
+
+        String message;
+
+        if (movie == null) {
+            message = "No previous booking found.";
+        } else {
+            message = "Movie: " + movie +
+                    "\nSeats: " + seats +
+                    "\nTotal: Rs " + total;
+        }
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Last Booking")
+                .setMessage(message)
+                .setPositiveButton("OK", null)
+                .show();
+    }
 }
