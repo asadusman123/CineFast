@@ -1,18 +1,21 @@
 package com.example.cinefast2_23l_0740;
 
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SeatSelectionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 public class SeatSelectionFragment extends Fragment {
 
     TextView movieTitle, seatCountText, totalPriceText;
@@ -25,7 +28,7 @@ public class SeatSelectionFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_seat_selection, container, false);
 
@@ -65,6 +68,7 @@ public class SeatSelectionFragment extends Fragment {
         }
 
         for (Button seat : seats) {
+            if (seat == null) continue;
             seat.setOnClickListener(v -> {
 
                 if (seat.isSelected()) {
@@ -110,8 +114,11 @@ public class SeatSelectionFragment extends Fragment {
         watchTrailerBtn = new Button(getContext());
         watchTrailerBtn.setText("Watch Trailer");
 
-        ((ViewGroup) view).addView(comingSoonBtn);
-        ((ViewGroup) view).addView(watchTrailerBtn);
+        ViewGroup layout = view.findViewById(R.id.seatGrid).getParent() instanceof ViewGroup ? 
+                (ViewGroup) view.findViewById(R.id.seatGrid).getParent() : (ViewGroup) view;
+        
+        layout.addView(comingSoonBtn);
+        layout.addView(watchTrailerBtn);
 
         watchTrailerBtn.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -123,5 +130,6 @@ public class SeatSelectionFragment extends Fragment {
     private void updateUI() {
         seatCountText.setText("Seats: " + selectedSeats);
         totalPriceText.setText("Total: Rs " + (selectedSeats * ticketPrice));
+        proceedBtn.setEnabled(selectedSeats > 0);
     }
 }
